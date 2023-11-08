@@ -28,18 +28,18 @@ for line in csv_data:
     else:
         if 'Alice' in last_message_time:
             time_difference = (time - last_message_time['Alice']).total_seconds()
-            reply_times.append(time_difference)
+            reply_times.append(round(time_difference / 60)) #reply times in minutes instead of seconds - use round to get rid of decimals
 
     last_message_time[name] = time
 
 #plot indexes
 indices = np.arange(len(reply_times))
 
-# Create the line plot - i dont know if this will work
+# Create the line plot
 plt.plot(indices, reply_times, marker='o')
-plt.title('alice - bob reply time')
+plt.title('A->B reply time')
 plt.xlabel('Message Index')
-plt.ylabel('Time Difference (seconds)') #need to change to mins later
+plt.ylabel('Time Difference')
 plt.grid(True)
 
 plt.show()
